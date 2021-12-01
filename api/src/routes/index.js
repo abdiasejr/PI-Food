@@ -21,6 +21,9 @@ const getApiInfo = async () => {
             image: recipe.image,
             summary: recipe.summary,
             diets: recipe.diets,
+            veryHealthy: recipe.veryHealthy,
+            spoonacularScore: recipe.spoonacularScore,
+            healthScore: recipe.healthScore,
             instructions: recipe.analyzedInstructions[0]
         }
     });
@@ -49,8 +52,9 @@ const getRecipes = async () => {
 
 router.get('/recipes', async (req, res) => {
     const { name } = req.query;
+    const { page } = req.query;
+    const recipes = await getRecipes();
     if(name) {
-        const recipes = await getRecipes();
         const filteredRecipe = recipes.filter(recipe => recipe.title.toLowerCase().includes(name.toLowerCase()));
         if(filteredRecipe.length > 0) {
             res.status(200).json(filteredRecipe);
@@ -58,9 +62,11 @@ router.get('/recipes', async (req, res) => {
             res.status(404).json({
                 message: 'No se encontró ' + name,
             });
-        }
+        } 
+    } else if(page) {
+        const paginatedRecipes = recipes.slice((page - 1) * 9, page * 9);
+        res.status(200).json(paginatedRecipes);
     } else {
-        const recipes = await getRecipes();
         if(recipes.length > 0) {
             res.status(200).json(recipes);
         } else {
@@ -87,7 +93,7 @@ router.get('/types', async (req, res) => {
 });
 
 router.post('/recipe', async (req, res) => {
-    const { recipeName, image, summary, diets } = req.body;
+    const { recipeName, summary, healthScore, isHealthy , instructions, image,diets } = req.body;
     const dietsIncluded = await Diet.findAll({
         where: {
             dietName: {
@@ -97,8 +103,11 @@ router.post('/recipe', async (req, res) => {
     });
     const recipeCreated = await Recipe.create({
         recipeName,
-        image,
         summary,
+        healthScore,
+        isHealthy,
+        instructions,
+        image
     });
     recipeCreated.addDiets(dietsIncluded);
     res.status(201).json({message: 'Receta creada', recipeCreated});
@@ -106,27 +115,22 @@ router.post('/recipe', async (req, res) => {
 
 router.get('/recipes/:recipeId', async (req, res) => {
     const { recipeId } = req.params;
-    if(recipeId) {
-        const recipeDb = await Recipe.findOne({
-            where: {
-                id: recipeId
-            }
-        });
-        if(recipeDb) {
-            res.status(200).json(recipeDb);
-        } else if(!recipeDb) {
-            const recipeApi = await axios.get(`https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${process.env.API_KEY}`);
-            res.status(200).json({
-                id: recipeApi.data.id,
-                title: recipeApi.data.title,
-                image: recipeApi.data.image,
-                summary: recipeApi.data.summary,
-                diets: recipeApi.data.diets,
-                instructions: recipeApi.data.analyzedInstructions[0]
-            });
+    if(isNaN(recipeId)){
+        const recipe = await Recipe.findByPk(recipeId);
+        if(recipe) {
+            res.status(200).json(recipe);
         } else {
             res.status(404).json({
-                message: 'No se encontró la receta'
+                message: 'No se encontró la receta',
+            });
+        }
+    } else {
+        const recipe = await axios.get(`https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${process.env.API_KEY}`);
+        if(recipe.data) {
+            res.status(200).json(recipe.data);
+        } else {
+            res.status(404).json({
+                message: 'No se encontró la receta',
             });
         }
     }

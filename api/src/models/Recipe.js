@@ -19,6 +19,18 @@ module.exports = (sequelize) => {
       image: DataTypes.STRING,
       summary: {
         type: DataTypes.TEXT,
+      },
+      healthScore: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      isHealthy: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+      },
+      instructions: {
+        type: DataTypes.TEXT,
+        allowNull: false,
       }
     },
     {
