@@ -35,6 +35,7 @@ const getDbInfo = async () => {
         {
             include: {
                 model: Diet,
+                as: 'diets',
                 attributes: ['dietName'],
                 through: {
                     attributes: []
@@ -52,7 +53,6 @@ const getRecipes = async () => {
 
 router.get('/recipes', async (req, res) => {
     const { name } = req.query;
-    const { page } = req.query;
     const recipes = await getRecipes();
     if(name) {
         const filteredRecipe = recipes.filter(recipe => recipe.title.toLowerCase().includes(name.toLowerCase()));
@@ -63,9 +63,6 @@ router.get('/recipes', async (req, res) => {
                 message: 'No se encontró ' + name,
             });
         } 
-    } else if(page) {
-        const paginatedRecipes = recipes.slice((page - 1) * 9, page * 9);
-        res.status(200).json(paginatedRecipes);
     } else {
         if(recipes.length > 0) {
             res.status(200).json(recipes);
@@ -93,7 +90,7 @@ router.get('/types', async (req, res) => {
 });
 
 router.post('/recipe', async (req, res) => {
-    const { recipeName, summary, healthScore, isHealthy , instructions, image,diets } = req.body;
+    const { title, summary, healthScore, isHealthy , instructions, image, diets} = req.body;
     const dietsIncluded = await Diet.findAll({
         where: {
             dietName: {
@@ -102,7 +99,7 @@ router.post('/recipe', async (req, res) => {
         }
     });
     const recipeCreated = await Recipe.create({
-        recipeName,
+        title,
         summary,
         healthScore,
         isHealthy,
