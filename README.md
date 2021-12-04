@@ -7,7 +7,6 @@
 <p align="right">
   <img height="200" src="./cooking.png" />
 </p>
-
 ## Objetivos del Proyecto
 
 - Construir una App utlizando React, Redux, Node y Sequelize.
@@ -28,7 +27,7 @@ El proyecto tendrá una duración máxima de tres semanas. En el caso de que com
 Tendrán un `boilerplate` con la estructura general tanto del servidor como de cliente.
 
 __IMPORTANTE:__ Es necesario contar minimamente con la última versión estable de Node y NPM. Asegurarse de contar con ella para poder instalar correctamente las dependecias necesarias para correr el proyecto.
-
+~ 'ao90
 Actualmente las versiónes necesarias son:
 
  * __Node__: 12.18.3 o mayor

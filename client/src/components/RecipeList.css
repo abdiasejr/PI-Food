@@ -1,0 +1,13 @@
+.recipe-list {
+    display: flex;
+    flex-flow: row wrap;
+    margin-top: 2rem;
+    align-items: center;
+    gap: 1rem
+}
+
+.recipe-link {
+    color: black;
+    text-transform: none;
+    text-decoration: none;
+}
