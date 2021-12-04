@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
-      recipeName: {
+      title: {
         type: DataTypes.STRING,
         allowNull: false,
       },
