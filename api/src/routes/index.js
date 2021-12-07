@@ -90,7 +90,7 @@ router.get('/types', async (req, res) => {
 });
 
 router.post('/recipe', async (req, res) => {
-    const { title, summary, healthScore, isHealthy , instructions, image, diets} = req.body;
+    const { title, summary, healthScore, isHealthy, instructions, image, diets} = req.body;
     const dietsIncluded = await Diet.findAll({
         where: {
             dietName: {
