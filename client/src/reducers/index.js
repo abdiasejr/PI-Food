@@ -34,49 +34,56 @@ export default (state = initialState, action) => {
             loading: false
         }
     }
-    if(action.type === 'SORT_RECIPES') {
-        let sortedRecipes = state.recipes.sort((a, b) => {
-            if (action.payload === "title alphabetically") {
-                return a.title?.localeCompare(b.title);
-              } else if (action.payload === "title reversed") {
-                return b.title?.localeCompare(a.title);
-              } else if (action.payload === "healthScore higher") {
-                return b.healthScore - a.healthScore;
-              } else if (action.payload === "healthScore lower") {
-                return a.healthScore - b.healthScore;
-              } else {
-                return a;
-              }
-        });
-        return {
-            ...state,
-            recipes: [...sortedRecipes],
-        }
-    }
-    if(action.type === 'SEARCH_RECIPE') {
-        let searchedRecipes = [];
-        state.filteredRecipes.length ? 
-        searchedRecipes = state.filteredRecipes.filter(recipe => {
-            return recipe.title.toLowerCase().includes(action.payload.toLowerCase())
-        }) : 
-        searchedRecipes = state.recipes.filter(recipe => {
-            return recipe.title.toLowerCase().includes(action.payload.toLowerCase())
-        })
-        return {
-            ...state,
-            filteredRecipes: searchedRecipes,
-        }
-    }
     if(action.type === 'FILTER_RECIPES') {
-        let filteredRecipes = state.recipes;
-        for(let key in action.payload) {
+        let filteredRecipes = [];
+
+        if(action.payload.searchValue) {
+            filteredRecipes = state.recipes.filter(recipe => {
+                return recipe.title.toLowerCase().includes(action.payload.searchValue.toLowerCase())
+            })
+        } else {
+            filteredRecipes = state.recipes;
+        }
+
+        if(action.payload.sortValue.length > 0) {
+            filteredRecipes = filteredRecipes.sort((a, b) => {
+                if (action.payload.sortValue === "title alphabetically") {
+                    return a.title.localeCompare(b.title);
+                } else if (action.payload.sortValue === "title reversed") {
+                    return b.title.localeCompare(a.title);
+                } else if (action.payload.sortValue === "healthScore higher") {
+                    return b.healthScore - a.healthScore;
+                } else if (action.payload.sortValue === "healthScore lower") {
+                    return a.healthScore - b.healthScore;
+                } else {
+                    return a;
+                }
+            });
+        }
+
+
+        if(action.payload.dietsIncluded.length > 0) {
             filteredRecipes = filteredRecipes.filter(recipe => {
-                return recipe.diets.includes(action.payload[key])
+                let flag = false;
+                for(let key in action.payload.dietsIncluded) {
+                    if(!recipe.diets.includes(action.payload.dietsIncluded[key])) {
+                        flag = false;
+                        break;
+                    }
+                    flag = true;
+                }
+                return flag;
             })
         }
         return {
             ...state,
-            filteredRecipes: filteredRecipes,
+            filteredRecipes: [...filteredRecipes],
+        }
+    }
+    if(action.type === 'FIND_RECIPE') {
+        return {
+            ...state,
+            search: action.payload,
         }
     }
     return state;
