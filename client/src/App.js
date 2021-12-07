@@ -9,6 +9,7 @@ import { CreateForm } from './pages/CreateForm';
 
 function App() {
   return (
+    <div className="app-container">
     <Router>  
       <Routes>
         <Route path="/" element={<Landing />} />
@@ -19,6 +20,7 @@ function App() {
         </Route>
       </Routes>
     </Router>
+    </div>
   );
 }
 
