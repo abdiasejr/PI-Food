@@ -1,4 +1,5 @@
 import React from "react";
+import './Pagination.css';
 
 export const Pagination = ({totalPages, currentPage, setCurrentPage}) => {
 
@@ -15,10 +16,10 @@ export const Pagination = ({totalPages, currentPage, setCurrentPage}) => {
     }
 
     return (
-        <div>
-            <button onClick={onLeftClick}>{"<"}</button>
-            <p>{`${currentPage}/${totalPages || 12 }`}</p>
-            <button onClick={onRightClick}>{">"}</button>
+        <div className="home-pagination">
+            <button onClick={onLeftClick} className="pagination-btn">{"<"}</button>
+            <p className="pagination-label">{`${currentPage}/${totalPages || 1 }`}</p>
+            <button onClick={onRightClick} className="pagination-btn">{">"}</button>
         </div>
     )
 }

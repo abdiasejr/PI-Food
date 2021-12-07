@@ -1,0 +1,16 @@
+.home-navbar {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    height: 10vh;
+}
+
+.nav-links {
+    text-transform: none;
+    text-decoration: none;
+    color: #161212;   
+}
+
+.nav-links:hover {
+    color: orange;
+}

@@ -1,0 +1,35 @@
+.search-bar {
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+}
+
+.search-bar_input {
+    border: 1px solid #a2a2a2;
+    border-radius: 5px 0 0 5px;
+    border-right: none; 
+    padding-left: 10px;
+    font-family: 'Lexend Deca', sans-serif;
+    font-size: 1rem;
+    opacity: 0.7;
+}
+
+.search-bar_input:focus {
+    outline: none;
+}
+
+.search-bar_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid #a2a2a2;
+    border-radius: 0 5px 5px 0;
+    border-left: none;
+    background-color: white;
+    font-size: 1.2em;
+}
+
+.search-bar_icon:hover {
+    transform: scale(1.2);
+}

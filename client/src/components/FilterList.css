@@ -1,0 +1,17 @@
+.filter-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.filter-diet {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.filter-icon {
+    width: 1.4rem;
+    height: 1.4rem;
+}
