@@ -56,23 +56,27 @@ export function createRecipe(recipe) {
     };
 }
 
-export function sortRecipes(sortValue){
-    return {
-        type: "SORT_RECIPES",
-        payload: sortValue
-    }
-}
-
-export function searchRecipe(searchValue){
-    return {
-        type: "SEARCH_RECIPE",
-        payload: searchValue
-    }
-}
-
-export function filterRecipes(dietsIncluded){
+export function filterRecipes(dietsIncluded, searchValue, sortValue) {
     return {
         type: "FILTER_RECIPES",
-        payload: dietsIncluded
+        payload: {
+            dietsIncluded,
+            searchValue,
+            sortValue,
+        }
+    }
+}
+
+export function findRecipe(title) {
+    return async dispatch => {
+        try {
+            const res = await axios.get("http://localhost:3001/recipes?name=" + title);
+            dispatch({
+                type: "FIND_RECIPE",
+                payload: res.data[0]
+            });
+        } catch (err) {
+            console.log(err);
+        }
     }
 }
