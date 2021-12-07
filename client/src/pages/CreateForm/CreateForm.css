@@ -1,0 +1,76 @@
+.create-main-container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 2rem;
+}
+
+.create-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.create-section-one {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.create-section-one label {
+    width: 15%;
+}
+.create-section-one label:last-child {
+    width: 80%;
+}
+
+.create-section-one label:first-child input {
+    width: 50%;
+}
+
+.create-section-two {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.create-input {
+    border-radius: 5px;
+    border: #ccc 1px solid;
+    font-family: 'Lexend Deca', sans-serif;
+}
+
+.create-textarea {
+    height: 100%;
+}
+
+.create-label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.create-label .title-input {
+    height: 40px;
+    font-size: 1.5em;
+    font-family: 'Lexend Deca', sans-serif;
+}
+
+.create-label .summary {
+    height: 80px;
+    font-size: 1em;
+    font-family: 'Lexend Deca', sans-serif;
+}
+
+.create-instructions {
+    width: 70%;
+}
+
+.create-diet-icon {
+    width: 1.2rem;
+}

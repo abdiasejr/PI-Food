@@ -1,0 +1,19 @@
+.home-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.home-body {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.home-body_filters {
+    display: flex;
+    width: 20%;
+    flex-direction: column;
+    gap: 20px;
+}
