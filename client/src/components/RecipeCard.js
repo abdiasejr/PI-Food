@@ -17,7 +17,7 @@ export const RecipeCard = ({ title, image, diets }) => {
                     </li> :
                     <li key={diet.dietName} className="recipe-card-diet">
                         <span className="recipe-card-tooltip">{diet.dietName}</span>
-                        <img src={dietIcons[diet.dietName]} alt={diet.dietName} className="reciper-card-icon"/>
+                        <img src={dietIcons[diet.dietName]} alt={diet.dietName} className="recipe-card-icon"/>
                     </li>
                 })}
                 </ul>
