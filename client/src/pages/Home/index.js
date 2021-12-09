@@ -7,7 +7,6 @@ import { RecipeList } from "../../components/RecipeList";
 import { SearchBar } from "../../components/SearchBar";
 import { SortList } from "../../components/SortList";
 import './Home.css'
-import '../../components/RecipeList.css'
 
 export const Home = () => {
   const [searchValue, setSearchValue] = useState("");
