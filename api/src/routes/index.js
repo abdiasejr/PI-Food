@@ -107,13 +107,27 @@ router.post('/recipe', async (req, res) => {
         image
     });
     recipeCreated.addDiets(dietsIncluded);
-    res.status(201).json({message: 'Receta creada', recipeCreated});
+    res.status(201).json(recipeCreated);
 });
 
 router.get('/recipes/:recipeId', async (req, res) => {
     const { recipeId } = req.params;
     if(isNaN(recipeId)){
-        const recipe = await Recipe.findByPk(recipeId);
+        const recipe = await Recipe.findOne(
+            {
+                where: {
+                    id: recipeId
+                },
+                include: {
+                    model: Diet,
+                    as: 'diets',
+                    attributes: ['dietName'],
+                    through: {
+                        attributes: []
+                    }
+                }
+            }
+        );
         if(recipe) {
             res.status(200).json(recipe);
         } else {
