@@ -3,7 +3,6 @@ const initialState = {
     diets: [],
     filteredRecipes: [],
     search: {},
-    loading: true,
 }
 
 export default (state = initialState, action) => {
@@ -11,27 +10,23 @@ export default (state = initialState, action) => {
         return {
             ...state,
             recipes: action.payload,
-            loading: false
         }
     }
     if(action.type === 'GET_DIETS') {
         return {
             ...state,
             diets: action.payload,
-            loading: false
         }
     }
     if(action.type === 'GET_RECIPE') {
         return {
             ...state,
             search: action.payload,
-            loading: false
         }
     }
     if(action.type === 'CREATE_RECIPE') {
         return {
             ...state,
-            loading: false
         }
     }
     if(action.type === 'FILTER_RECIPES') {
