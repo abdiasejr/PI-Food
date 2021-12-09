@@ -80,3 +80,9 @@ export function findRecipe(title) {
         }
     }
 }
+
+export function setLoading() {
+    return {
+        type: "LOADING"
+    }
+}
