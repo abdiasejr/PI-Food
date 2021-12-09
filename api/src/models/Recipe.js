@@ -26,11 +26,11 @@ module.exports = (sequelize) => {
       },
       isHealthy: {
         type: DataTypes.BOOLEAN,
-        allowNull: false,
+        defaultValue: false,
       },
       instructions: {
         type: DataTypes.TEXT,
-        allowNull: false,
+        defaultValue: "",
       }
     },
     {
