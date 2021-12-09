@@ -3,16 +3,18 @@ import { useSelector, useDispatch } from "react-redux";
 import { getDiets, createRecipe } from "../../actions";
 import "./CreateForm.css";
 import { dietIcons } from "../..";
+import { useNavigate } from "react-router";
 
 export const CreateForm = () => {
   const diets = useSelector((state) => state.diets);
   const loading = useSelector((state) => state.loading);
+  const navigate = useNavigate();
   const [formRecipe, setFormRecipe] = useState({
     title: null,
     summary: null,
     healthScore: null,
     isHealthy: false,
-    instructions: null,
+    instructions: [],
     image: null,
     diets: [],
   });
@@ -51,13 +53,15 @@ export const CreateForm = () => {
       }
     }
     dispatch(createRecipe(formRecipe));
+    navigate("/recipes");
   };
 
   return (
     !loading && (
-      <div className="create-main-container">
+      <div>
         <form className="create-form">
-          <label className="create-label">
+          <h1>Create Your Recipe!</h1>
+          <label className="create-label create-container">
             Title
             <input
               className="create-input title-input"
@@ -67,7 +71,7 @@ export const CreateForm = () => {
               onChange={handleChange}
             />
           </label>
-          <label className="create-label">
+          <label className="create-label create-container">
             Summary
             <textarea
               className="create-input create-textarea summary"
@@ -76,7 +80,7 @@ export const CreateForm = () => {
               onChange={handleChange}
             />
           </label>
-          <div className="create-section-one">
+          <div className="create-section-one create-container">
             <label className="create-label">
               Score
               <input
@@ -106,7 +110,7 @@ export const CreateForm = () => {
               />
             </label>
           </div>
-          <div className="create-section-two">
+          <div className="create-section-two create-container">
             <label className="create-label">
               Diets
               {diets.map((diet) => {
@@ -132,13 +136,13 @@ export const CreateForm = () => {
               <textarea
                 className="create-input create-textarea"
                 name="instructions"
-                placeholder="1. Put the ingredients in the bowl.\n2. Mix it up.\n3. Enjoy!"
+                placeholder="1. Put the ingredients in the bowl."
                 onChange={handleChange}
               />
             </label>
           </div>
           <div>
-            <button type="submit" onClick={handleSubmit}>
+            <button type="submit" onClick={handleSubmit} className="create-btn">
               Create Recipe
             </button>
           </div>

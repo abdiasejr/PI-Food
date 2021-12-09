@@ -1,0 +1,109 @@
+.details-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.details-container p{
+  text-align: justify;
+  margin: 0;
+}
+.details-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.details-header-back {
+  color: #161212;
+  font-size: 1.5rem;
+  text-decoration: none;
+  text-transform: none;
+}
+
+.details-body {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+.details-body-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.details-body-title {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.details-body-img {
+  border-radius: 10px;
+  width: 70%;
+  height: 100%;
+}
+
+.details-body-instructions {
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+}
+
+.item-container {
+  background-color: rgba(255, 255, 255, 0.816);
+  border-radius: 10px;
+  padding: 0.5rem;
+}
+
+.detail-diets-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: space-between;
+  align-self: flex-start;
+  gap: 0.3rem;
+  margin: 0;
+  padding-left: 0.5rem;
+}
+
+.detail-diets {
+  list-style: none;
+  font-size: 0.8em;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.detail-tooltip {
+  visibility: hidden;
+  width: 120px;
+  background-color: #161212;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  margin-top: 48px;
+  margin-left: -38px;
+  z-index: 1;
+}
+
+.detail-tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #161212 transparent;
+}
+
+.detail-diets:hover .detail-tooltip {
+  visibility: visible;
+}
+
+.detail-icon {
+  width: 2.5rem;
+}

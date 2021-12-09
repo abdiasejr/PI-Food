@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllRecipes, getDiets, filterRecipes} from "../../actions";
+import { getAllRecipes, getDiets, filterRecipes } from "../../actions";
 import { FilterList } from "../../components/FilterList";
 import { Pagination } from "../../components/Pagination";
 import { RecipeList } from "../../components/RecipeList";
 import { SearchBar } from "../../components/SearchBar";
 import { SortList } from "../../components/SortList";
 import './Home.css'
+import '../../components/RecipeList.css'
 
 export const Home = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -17,7 +18,6 @@ export const Home = () => {
   const recipes = useSelector((state) => state.recipes);
   const diets = useSelector((state) => state.diets);
   const filteredRecipes = useSelector((state) => state.filteredRecipes);
-  const loading = useSelector((state) => state.loading);
 
   const dispatch = useDispatch();
 
@@ -30,7 +30,7 @@ export const Home = () => {
       dispatch(filterRecipes(dietsIncluded, searchValue, sortValue));
   }, [dietsIncluded, searchValue, sortValue]);
   
-  return (!loading &&
+  return (
     <React.Fragment>
       <div className="home-header">
         <h1> Fudify Recipes </h1>
@@ -39,14 +39,18 @@ export const Home = () => {
           searchValue={searchValue}
         />
       </div>
+
       <div className="home-body">
         <div className="home-body_filters">
-          <SortList setSortValue={setSortValue} />
-          <FilterList 
+
+          <SortList 
+            setSortValue={setSortValue}
+            />
+          {diets.length > 0 && <FilterList 
             diets={diets}
             dietsIncluded={dietsIncluded}
             setDietsIncluded={setDietsIncluded}
-          />
+            />}
         </div>
         <RecipeList 
           currentPage={currentPage} 

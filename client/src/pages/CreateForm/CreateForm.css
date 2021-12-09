@@ -1,18 +1,18 @@
-.create-main-container {
+.create-container {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     padding: 1rem;
-    border-radius: 5px;
-    margin-bottom: 2rem;
+    border-radius: 10px;
 }
 
 .create-form {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .create-section-one {
@@ -40,9 +40,10 @@
 }
 
 .create-input {
-    border-radius: 5px;
+    border-radius: 10px;
     border: #ccc 1px solid;
     font-family: 'Lexend Deca', sans-serif;
+    padding-left: 0.5rem;
 }
 
 .create-textarea {
@@ -73,4 +74,18 @@
 
 .create-diet-icon {
     width: 1.2rem;
+}
+
+.create-btn {
+    height: 40px;
+    border: orange 1px solid;
+    border-radius: 10px;
+    background-color: orange;
+    color: white;
+    font-family: 'Lexend Deca', sans-serif;
+}
+
+.create-btn:hover {
+    cursor: pointer;
+    background-color: #ffc107;
 }
